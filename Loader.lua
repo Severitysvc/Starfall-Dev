@@ -1,12 +1,7 @@
-if shared.Aether then
-	shared.Aether:Uninject(_, function()
-		return
-	end)
-end
+local Updater = loadstring(
+	"https://raw.githubusercontent.com/Severitysvc/Starfall-Dev/refs/heads/main/Build/Modules/Updater.lua"
+).New()
 
-local Updater = require()
 Updater:Init()
 
-shared.Updater = Updater
-
-Updater:StartQueue("")
+return {}
