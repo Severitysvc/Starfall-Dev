@@ -5,7 +5,7 @@ local Repo = "Starfall-Dev"
 local Owner = "Severitysvc"
 
 local VersionFile = "Version.lua"
-local RawBase = "https://raw.githubusercontent.com/" .. Owner .. "/" .. Repo .. "/main/"
+local RawBase = "https://raw.githubusercontent.com/" .. Owner .. "/" .. Repo .. "/refs/heads/main/"
 
 local CreatorID = game.CreatorId
 local PlaceID = game.PlaceId
@@ -42,7 +42,7 @@ local function DownloadAsset(Asset, Force)
 	end
 
 	if not Force and isfile(Path) then
-		return loadfile(Path)()
+		return loadfile(Path)
 	end
 
 	local Url = RawBase .. Asset
@@ -54,10 +54,8 @@ local function DownloadAsset(Asset, Force)
 	assert(Response.Success or Response.StatusCode == 200, "Failed to download: " .. Url)
 	writefile(Path, Response.Body)
 
-	return loadfile(Path)()
+	return loadfile(Path)
 end
-
-shared.Hq29sS9aa = DownloadAsset
 
 local function GetInstalledVersion()
 	if isfile(Repo .. "/" .. VersionFile) then
@@ -66,6 +64,8 @@ local function GetInstalledVersion()
 
 	return "None"
 end
+
+shared.Hq29sS9aa = DownloadAsset
 
 local Installed = GetInstalledVersion()
 local GithubVersion = DownloadAsset(VersionFile, true)()
@@ -82,9 +82,9 @@ else
 	end
 end
 
-local Supported = DownloadAsset("Build/Support.lua")
-local KeySystem = DownloadAsset("Library/KeySystem/Source.lua")
-DownloadAsset("Library/Loading Animation/Source.lua")()
+local Supported = DownloadAsset("Build/Support.lua")()
+local KeySystem = DownloadAsset("Library/KeySystem/Source.lua")()
+DownloadAsset("Library/Loading Animation/Source.lua")()()
 
 for _, Data in pairs(Supported) do
 	if Data.Main.CreatorID and Data.Main.CreatorID == CreatorID then

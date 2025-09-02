@@ -22,7 +22,7 @@ return {
 
 	["Grow a garden"] = {
 		Main = {
-			Source = "Bundle/Profiles/Grow a Garden/Source.lua",
+			Source = "Bundle/Profiles/Grow a garden/Source.lua",
 			CreatorID = 35789249,
 		},
 	},
