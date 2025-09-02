@@ -21,7 +21,7 @@ local function DownloadAsset(Asset, Force)
 	local Parts = {}
 
 	for Part in Asset:gmatch("[^/]+") do
-		table.insert(parts, part)
+		table.insert(Parts, Part)
 	end
 
 	if #Parts > 1 then
@@ -42,7 +42,7 @@ local function DownloadAsset(Asset, Force)
 	end
 
 	if not Force and isfile(Path) then
-		return loadfile(Path)
+		return loadfile(Path)()
 	end
 
 	local Url = RawBase .. Asset
@@ -54,7 +54,7 @@ local function DownloadAsset(Asset, Force)
 	assert(Response.Success or Response.StatusCode == 200, "Failed to download: " .. Url)
 	writefile(Path, Response.Body)
 
-	return loadfile(Path)
+	return loadfile(Path)()
 end
 
 local function GetInstalledVersion()
@@ -81,7 +81,7 @@ else
 end
 
 local Supported = DownloadAsset("Build/Support.lua")
-local KeySystem = DownloadAsset("Build/KeySystem.lua")
+local KeySystem = DownloadAsset("Build/Keysystem.lua")
 
 for _, Data in pairs(Supported) do
 	if Data.Main.CreatorID and Data.Main.CreatorID == CreatorID then
