@@ -11,13 +11,14 @@ return function()
 	local LogoHolder_1 = Instance.new("Frame")
 	local Logo_1 = Instance.new("ImageLabel")
 
-	local Blur = Instance.new("BlurEffect")
-	local ColorCorrection = Instance.new("ColorCorrectionEffect")
+	local Blur = Instance.new("BlurEffect", game:GetService("Lighting"))
+	local ColorCorrection = Instance.new("ColorCorrectionEffect", game:GetService("Lighting"))
 
 	local TweenService = game:GetService("TweenService")
 
 	LoadingScreen.Name = "LoadingScreen"
 	LoadingScreen.Parent = gethui and gethui() or game:GetService("CoreGui")
+	LoadingScreen.IgnoreGuiInset = true
 
 	Depth_1.Name = "Depth"
 	Depth_1.Parent = LoadingScreen
@@ -68,7 +69,7 @@ return function()
 	The_1.Position = UDim2.new(0.0657439455, 0, 0.459283382, 0)
 	The_1.Size = UDim2.new(0, 0, 0, 0)
 	The_1.FontFace =
-		Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.ExtraBold, Enum.FontStyle.Normal)
+		Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 	The_1.Text = "THE"
 	The_1.TextColor3 = Color3.fromRGB(255, 0, 255)
 	The_1.TextSize = 35
@@ -163,7 +164,7 @@ return function()
 
 	task.wait(0.1)
 
-	TweenService:Create(Blur, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { BlurSize = 100 })
+	TweenService:Create(Blur, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Size = 100 })
 		:Play()
 	TweenService:Create(
 		ColorCorrection,
@@ -219,8 +220,7 @@ return function()
 		Size = UDim2.new(0, 0, 0, 307),
 	}):Play()
 
-	TweenService:Create(Blur, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { BlurSize = 0 })
-		:Play()
+	TweenService:Create(Blur, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Size = 0 }):Play()
 	TweenService:Create(
 		ColorCorrection,
 		TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),

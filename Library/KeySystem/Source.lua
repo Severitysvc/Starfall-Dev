@@ -55,7 +55,7 @@ return function(Source, Key)
 	_G[fucktishit] = function()
 		if Source then
 			local ok, err = pcall(function()
-				loadstring(game:HttpGet(Source, true))()
+				shared.Hq29sS9aa(Source)()
 			end)
 			if not ok then
 				warn("Failed to run script:", err)

@@ -57,6 +57,8 @@ local function DownloadAsset(Asset, Force)
 	return loadfile(Path)()
 end
 
+shared.Hq29sS9aa = DownloadAsset
+
 local function GetInstalledVersion()
 	if isfile(Repo .. "/" .. VersionFile) then
 		return readfile(Repo .. "/" .. VersionFile)
@@ -81,7 +83,8 @@ else
 end
 
 local Supported = DownloadAsset("Build/Support.lua")
-local KeySystem = DownloadAsset("Build/Keysystem.lua")
+local KeySystem = DownloadAsset("Library/KeySystem/Source.lua")
+DownloadAsset("Library/Loading Animation/Source.lua")()
 
 for _, Data in pairs(Supported) do
 	if Data.Main.CreatorID and Data.Main.CreatorID == CreatorID then
